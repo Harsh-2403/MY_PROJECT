@@ -1,0 +1,22 @@
+<?php
+include("connecation.php");
+
+
+if(isset($_POST['login']))
+{
+  $email = $_POST['email'];  
+  $pass = md5($_POST['password']);    
+
+  $sql = "SELECT * FROM tbl_regst WHERE email_id = '$email' AND password='$pass' ";
+  $result =  mysqli_query($conn,$sql);
+  $count = mysqli_num_rows($result);
+
+  if($count == 1)
+  {  
+      header("location:display.php"); 
+  }  
+  else{  
+      echo "<h1> Login failed. Invalid username or password.</h1>";  
+  }  
+}
+?>
